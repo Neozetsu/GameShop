@@ -1,0 +1,26 @@
+import { ApiProperty } from "@nestjs/swagger";
+import { IsNumber, IsString } from "class-validator";
+import { ProductCategory } from "../products.category.enum";
+
+
+export class UpdateProductDto {
+    @ApiProperty({ title: 'Название продукта', example: 'Logitech mouse G502' })
+    @IsString({ message: 'Должно быть строкой' })
+    readonly name?: string;
+
+    @ApiProperty({ title: 'Описание продукта', example: 'Высокочувствительная игровая мышь G502' })
+    @IsString({ message: 'Должно быть строкой' })
+    readonly description?: string;
+
+    @ApiProperty({ title: 'Цена продукта', example: 4500 })
+    @IsNumber({}, { message: 'Должно быть числом' })
+    readonly price?: number;
+
+    @ApiProperty({ title: 'Ссылка на фото продукта', example: 'https://example.jpg' })
+    @IsString({ message: 'Должно быть строкой' })
+    readonly photo?: string;
+
+    @ApiProperty({ title: 'Категория продукта', example: ProductCategory.mouses })
+    @IsString({ message: 'Должно быть строкой' })
+    readonly category?: ProductCategory
+}
